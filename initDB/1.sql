@@ -1,0 +1,9 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+CREATE DATABASE IF NOT EXISTS react_express;
+CREATE DATABASE IF NOT EXISTS react_laravel;
+
+USE react_laravel;
+DROP TABLE products;
