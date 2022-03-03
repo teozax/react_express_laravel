@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 services: 
 
   db:
@@ -12,7 +12,7 @@ services:
       MYSQL_ROOT_PASSWORD: 1
       # MYSQL_DATABASE: react_express
       MYSQL_ALLOW_EMPTY_PASSWORD: yes
-    env_file: ./Express/.env
+    # env_file: ./Express/.env
     volumes:
       - ./initDB:/docker-entrypoint-initdb.d
     healthcheck:
@@ -37,7 +37,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file: ./Express/.env
+    # env_file: ./Express/.env
     ports:
       - 5000:5000
     stdin_open: true
@@ -51,13 +51,13 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    env_file: ./Laravel/.env
+    # env_file: ./Laravel/.env
     stdin_open: true
     tty: true
     entrypoint: sh -c "php artisan migrate && php artisan db:seed --class=DatabaseSeeder && php artisan serve --host 0.0.0.0"
 
   react:
-    build: ./client-side
+    # build: ./client-side
     image: tzacheilas/react:1.0
     ports:
       - 3001:3000
