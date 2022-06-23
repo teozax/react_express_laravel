@@ -1,14 +1,9 @@
 import React from 'react';
-import Home from './pages/Home'; 
-import {LogoutAction} from './Redux/Actions/AuthActions';
-import {useParams,useNavigate,Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { MDBIcon} from 'mdbreact';
 import {NavBar} from './NavigationBar/NavBar.js'
 import {LoadCartAction} from './Redux/Actions/CartActions';
 
 export default function Header(props) {
-  const authResponse = useSelector(state=>state.userAuth.authResponse);
   const framework = localStorage.getItem('framework');
   const add_trigger = useSelector(state => state.productDetails.add_trigger);
   const trigger = useSelector(state => state.cart.trigger);
@@ -40,7 +35,7 @@ export default function Header(props) {
         break;
       case 'Express':
         url = `${JSON.parse(process.env.REACT_APP_API_URL)[framework]}/api/cart`;
-        RequestOptions ={ 
+        RequestOptions = {
           method: 'POST',
           headers: {
             'Authorization' : `Bearer ${token}`,
@@ -48,13 +43,14 @@ export default function Header(props) {
           },
         };
         break;
+      default:
     }
     // if (cart.length > 0) return;
     dispatch(LoadCartAction(url, RequestOptions));
     
-  },[add_trigger,trigger]);
+  },[add_trigger,trigger,dispatch,framework,token]);
   
 
-  return (<><NavBar/></>
+  return (<><NavBar/><div className='bg_image'></div></>
   );
 }

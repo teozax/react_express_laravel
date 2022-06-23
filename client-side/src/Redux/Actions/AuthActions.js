@@ -1,6 +1,5 @@
 import * as ActionTypes from '../ActionsRed';
 import {HandleRequest} from '../Services/PrepareService';
-import { useNavigate } from 'react-router-dom';
 
 export const RegisterAction = (url, RequestOptions, navigate) => {
   return (dispatch) => {

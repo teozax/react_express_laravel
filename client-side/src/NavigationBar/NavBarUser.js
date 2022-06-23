@@ -1,8 +1,8 @@
 import React from 'react';
 import {LogOut} from './NavBar.js';
-import {useParams,useNavigate,Link} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem} from 'mdbreact';
+import { MDBIcon} from 'mdbreact';
 
 function NavBarUser() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ function NavBarUser() {
   </Link>
 
   <div className=''>
-    <a
+    <span
       className='dropdown-toggle d-flex align-items-center hidden-arrow nav-link'
       id="navbarDropdownMenuAvatar"
       role="button"
@@ -32,7 +32,7 @@ function NavBarUser() {
       style={{borderRadius:'50%'}}
     >
       <MDBIcon icon="user-check"  />
-    </a>
+    </span>
     <ul className="dropdown-menu dropdown-menu-middle">
       {framework==='Laravel' && 
       <li>
@@ -45,7 +45,7 @@ function NavBarUser() {
   </div></>
   :<>
   <div className="dropdown">
-    <a
+    <span
       className="dropdown-toggle d-flex align-items-center hidden-arrow"
       href="#"
       id="navbarDropdownMenuAvatar"
@@ -54,7 +54,7 @@ function NavBarUser() {
       aria-expanded="false"
     >
       <MDBIcon icon="user" />
-    </a>
+    </span>
     <ul className="dropdown-menu dropdown-menu-end"
       aria-labelledby="navbarDropdownMenuAvatar">
     <li>

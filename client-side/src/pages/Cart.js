@@ -1,8 +1,6 @@
 import React, { createRef } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {LoadCartAction,Update_Cart_Action,Remove_From_Cart_Action} from '../Redux/Actions/CartActions';
-import InputMask from "react-input-mask";
-import NumericInput from 'react-numeric-input';
+import {Update_Cart_Action,Remove_From_Cart_Action} from '../Redux/Actions/CartActions';
 
 function Cart() {
   const framework = localStorage.getItem('framework');
@@ -42,6 +40,7 @@ function Cart() {
           body:JSON.stringify({title:res[0].title,quantity:res[0].quantity})
         };
         break;
+      default:
     }
     dispatch(Update_Cart_Action(url, RequestOptions));
   }
@@ -63,6 +62,7 @@ function Cart() {
           body:JSON.stringify({title:res[0].title})
         };
         break;
+      default:
     }
     dispatch(Remove_From_Cart_Action(url, RequestOptions));
   }
@@ -123,7 +123,7 @@ function Cart() {
             {framework==='Express' && <>
               <td>
               <div className="input-group d-block">
-                <button className="btn-warning" onClick={(e)=>decrease(i,ref)}>
+                <button className="btn-cart" onClick={(e)=>decrease(i,ref)}>
                   <i className="fas fa-minus text-blue"></i>
                 </button>
                 <input 
@@ -131,7 +131,7 @@ function Cart() {
                     if (!/[0-9]/.test(event.key)) {
                       event.preventDefault();
                     } 
-                    if ((parseInt(`${event.target.value}` + `${event.key}`,10) < parseInt(event.target.min,10))||(parseInt(`${event.target.value}` + `${event.key}`,10) > parseInt(event.target.max,10))){
+                    if ((parseInt(`${event.target.value}${event.key}`,10) < parseInt(event.target.min,10))||(parseInt(`${event.target.value}${event.key}`,10) > parseInt(event.target.max,10))){
                       event.preventDefault();
                     }
                   }} 
@@ -145,29 +145,24 @@ function Cart() {
                   id="quantity" 
                   name="quantity" 
                   className="input-number text-dark text-center" 
-                  value={updCart.cart[i].quantity} 
-                  min="1" 
-                  max="100" 
+                  value={updCart.cart[i].quantity}
+                  min="1"
+                  max="100"
                   onChange={(e)=>change_quantity(e,i)}
                   ref={ref} />
-
-                  <button className="btn-danger" onClick={(e)=>increase(i,ref)}>
+                  <button className="btn-cart" onClick={(e)=>increase(i,ref)} style={{marginRight:"10px"}}>
                     <i className="fas fa-plus"></i>
                   </button>
-              </div>
-            {/* </td>
-            <td> */}
-            <button 
+                  <button 
               type="button" 
               className="btn-cart"
               data-bs-toggle="tooltip" 
               data-bs-placement="top position-relative" 
               title="Submit to database" 
               onClick={()=>update_cart(i)}>
-              <i className="fas fa-edit"></i>
+              <i className="fas fa-edit"/>
             </button>
             <button 
-              className="btn-danger"
               type="button" 
               className="btn-cart"
               data-bs-toggle="tooltip" 
@@ -176,6 +171,8 @@ function Cart() {
               onClick={()=>remove_from_cart(i)}>
               <i className="fas fa-trash"></i>
             </button>
+              </div>
+
             </td>
             <td>{updCart.cart[i].quantity * item.price}</td></>}
           </tr>)})}

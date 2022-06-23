@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {LoginAction,LogoutAction} from '../Redux/Actions/AuthActions';
+import {useDispatch} from 'react-redux';
+import {LoginAction} from '../Redux/Actions/AuthActions';
 import {useNavigate,Link} from 'react-router-dom'; 
 
 function Login() {
@@ -58,6 +58,7 @@ function Login() {
           body : JSON.stringify({email:fields.email,password:fields.password})
         };
         break;
+      default:
     }
     localStorage.setItem('framework', fields.framework);
     dispatch(LoginAction(url, RequestOptions, navigate));
@@ -66,6 +67,8 @@ function Login() {
   const token = localStorage.getItem('user-token');
   const type = useState('username');
 
+
+  
   useEffect(() => {
     switch(fields.framework){
       case 'Django':
@@ -77,11 +80,12 @@ function Login() {
       case 'Express':
         type[1]('email');
         break;
+      default:
     }
     return () => {
       // cleanup
     }
-  }, [fields.framework])
+  })
 
   return (<>
     {token===null ?

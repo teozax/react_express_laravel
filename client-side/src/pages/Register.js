@@ -1,11 +1,11 @@
 import React,{useState} from "react";
 import {Link,useNavigate } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {RegisterAction} from '../Redux/Actions/AuthActions';
 
 
 function RegisterComponent() {
-  const token = useSelector(state => state.userAuth.authResponse.token);
+  // const token = useSelector(state => state.userAuth.authResponse.token);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   //const authResponse = useSelector(state=>state.userAuth.authResponse);
@@ -66,6 +66,7 @@ function RegisterComponent() {
           body : JSON.stringify({username:fields.name,email:fields.email,password:fields.password})
         };
         break;
+      default:
     }
 
     dispatch(RegisterAction(url, RequestOptions, navigate));

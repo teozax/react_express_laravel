@@ -1,7 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from '../context'
-import frameworks from '../frameworks.json'
-import {Link,useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const NavSubmenu = (props) => {
   const navigate = useNavigate();
@@ -9,9 +7,9 @@ const NavSubmenu = (props) => {
     {props.content.length>0 && 
     props.content.map((fw,i)=>
     <div className='nav-sub-box' key={i}>
-      <a type='button' onClick={e=>{e.preventDefault();navigate(`/frameworks/${fw}`)}} >
+      <span type='button' onClick={e=>{e.preventDefault();navigate(`/frameworks/${fw}`)}} >
       <div className='mb-2 ' style={{}}>{fw}</div>
-      </a>
+      </span>
     </div>)}
   </>);
   

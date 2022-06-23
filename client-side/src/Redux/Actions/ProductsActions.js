@@ -1,22 +1,23 @@
 import {HandleRequest} from '../Services/PrepareService';
 import * as ActionTypes from '../ActionsRed';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
 
 export const LoadProductsAction = (url, RequestOptions) => {
   return (dispatch) => {
     dispatch({type: ActionTypes.LOADING});
 
     HandleRequest(url, RequestOptions).then(res=>res.json()).then((res) => {
+      // console.log(res)
       if(res.hasOwnProperty('success') && res.success === true){
-        const data = res.products;
-        dispatch({type: ActionTypes.LOAD_PRODUCTS_SUCCESS,res:data});
+        // const data = res.products;
+        dispatch({type: ActionTypes.LOAD_PRODUCTS_SUCCESS,res:res.products});
       }else if(res.hasOwnProperty('success') && res.success === false){
         dispatch({type: ActionTypes.LOAD_PROFILE_ERROR,res});
       }
       }, error => {
         dispatch({type : ActionTypes.CODE_ERROR, error});
       })
+
+    
 
     // axios.get(url2, RequestOptions2).then((res) => {
     //   console.log('res2',res.data); 
@@ -38,11 +39,11 @@ export const LoadProductAction = (url, RequestOptions, url2, RequestOptions2, fr
 
     HandleRequest(url, RequestOptions).then(res=>res.json()).then((res) => {
       if(res.hasOwnProperty('success') && res.success === true){
-        const data = res.products;
-        dispatch({type: ActionTypes.LOAD_PRODUCT_SUCCESS,res:data});
+        // const data = res.products;
+        dispatch({type: ActionTypes.LOAD_PRODUCT_SUCCESS,res:res.products});
         if (framework==='Express'){
-          const data = res.is_added_to_cart;
-          dispatch({type: ActionTypes.CHECK_ADDED_SUCCESS, res:data});}
+          // const data = res.is_added_to_cart;
+          dispatch({type: ActionTypes.CHECK_ADDED_SUCCESS, res:res.is_added_to_cart});}
       }else if(res.hasOwnProperty('success') && res.success === false){
         dispatch({type: ActionTypes.LOAD_PROFILE_ERROR,res});
       }

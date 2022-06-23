@@ -1,31 +1,22 @@
 import React, {useState,useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import axios from 'axios';
-import { fetch_method } from '../context';
 import {Update_User_Action} from '../Redux/Actions/AuthActions'
 
 function Profile() {
   const trigger = useSelector(state=>state.userAuth.prof_trigger);
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem('user'));
-  const en = useState(false); 
   const refName = React.createRef();
   const framework = localStorage.getItem('framework');
   const token = localStorage.getItem('user-token');
   let url, RequestOptions;
-console.log('trig',trigger)
+
   useEffect(() => {
   
     return () => {
       
     }
   }, [trigger])
-  
-
-  const handleDelete = (id)=>{
-    fetch_method("http://localhost/php_mysql_connect/main.php",'DELETE_M',{'id':id})
-    .then(res=>en[1](!en[0]))
-  }
 
   const handleSave = (type)=>{
     let data;
@@ -48,6 +39,7 @@ console.log('trig',trigger)
           body:JSON.stringify(data)
         };
         break;
+      default:
     }
     dispatch(Update_User_Action(url, RequestOptions, obj1[type]));
   }

@@ -120,7 +120,7 @@
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "nodemon index.js",
     "dev": "node migration.js up & node index.js"
   },
   "engines": {

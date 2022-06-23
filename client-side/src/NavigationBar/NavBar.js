@@ -1,9 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import Home from '../pages/Home'; 
 import {LogoutAction} from '../Redux/Actions/AuthActions';
-import {useParams,useNavigate,Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import { MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem} from 'mdbreact';
+import { MDBIcon } from 'mdbreact';
 import NavBarUser from './NavBarUser';
 import SideBarUser from './SideBarUser'
 import SideBar from './SideBar';
@@ -11,23 +8,9 @@ import Sections from './Sections';
 import frameworks from '../frameworks.json'
 import NavSubmenu from './navSubmenu';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as fa from '@fortawesome/free-solid-svg-icons'
-import cx from "classnames";
-
-// import {NavData} from './data.json'
-const SubMenuClass = '';
-
 const NavBar = () => {
   
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const framework = localStorage.getItem('framework');
-  const nav_tog_1 = React.createRef();
-  // const nav_cont_1 = React.createRef();
   const RefNavSub = React.useRef(null);
-  
   const user_side_ref = React.createRef();
   const SideBarRef = React.createRef();
   const win_size = useWindowSize();
@@ -86,10 +69,10 @@ const NavBar = () => {
   }
 
  return (
-   <div className='' style={{marginBottom:'140px',position:'sticky',width:'100%',zIndex:'1'}}>
+   <div className='' style={{marginBottom:'100px',position:'sticky',zIndex:'1'}}>
  <div className='main-nav-bar'>
- <div className='nav-line'></div>
-  <nav className="d-flex flex-row justify-content-between align-items-stretch ">
+ {/* <div className='nav-line'></div> */}
+  <nav className="d-flex flex-row justify-content-between align-items-center nav-line">
     <div className="nav-cont-1"></div>
     
     {trig[0]===true ? 
@@ -105,12 +88,12 @@ const NavBar = () => {
       <NavBarUser/>
       :<><div></div>
       <div className='nav-link mr-1' >
-        <a className=''><MDBIcon onClick={slideUserBar} icon="user-check"/></a>
+        <span className=''><MDBIcon onClick={slideUserBar} icon="user-check"/></span>
       </div></>
     }
 
   </nav>
-  <div className='nav-line' ></div>
+  {/* <div className='nav-line' ></div> */}
   {trig[0]===false ? <SideBarUser self_ref={user_side_ref}/> : <></>}
   {trig[0]===false ? <SideBar self_ref={SideBarRef}/> : <></>}
   {<SubRef ref={RefNavSub} disappear={disappear} ><NavSubmenu content={subContent} /></SubRef>}
@@ -189,7 +172,8 @@ function LogOut(dispatch,navigate) {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         }
-      };
+      };break;
+    default:
   }
   dispatch(LogoutAction(url, RequestOptions, navigate));
   // navigate("/home");

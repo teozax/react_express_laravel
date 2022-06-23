@@ -6,7 +6,7 @@ import Register from "../pages/Register";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Error from "../pages/Error";
-import Framework_Info from '../pages/Framework_Info'
+import FrameworkInfo from '../pages/Framework_Info'
 import Header from '../Header';
 import Profile from '../pages/Profile';
 
@@ -30,7 +30,7 @@ const Routes =()=>{
     <>
     <TheRoutes>
       <Route path="/" element={<Navigate  to="/Home" />}/>
-      <Route path="/frameworks/:fw_info" element={<Framework_Info/>}/>
+      <Route path="/frameworks/:fw_info" element={<FrameworkInfo/>}/>
       <Route path="/:basic_route" element={<Guard/>}/>
       <Route path="/Product/:prod_id" element={<Guard/>}/>
       <Route path="/user/:user_inf" element={<Guard/>}/>

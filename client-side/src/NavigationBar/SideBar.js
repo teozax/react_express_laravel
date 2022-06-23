@@ -1,7 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from '../context'
-import {useParams,useNavigate,Link} from 'react-router-dom';
-import { MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem} from 'mdbreact';
+import {useNavigate} from 'react-router-dom';
 import frameworks from '../frameworks.json'
 
 const SideBar = (props) => {

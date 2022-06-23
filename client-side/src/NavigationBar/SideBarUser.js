@@ -1,8 +1,7 @@
 import React from 'react';
 import {LogOut} from './NavBar.js';
-import {useParams,useNavigate,Link} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import { MDBIcon, MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem} from 'mdbreact';
+import {useNavigate,Link} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
 
 function SideBarUser(props) {
   const navigate = useNavigate();

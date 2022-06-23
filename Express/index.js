@@ -43,7 +43,7 @@ server.get('/txt_response', async (req, res) => {
 passport_middleware(passport);
 
 var corsOptions = {
-    origin: process.env.CLIENT_ORIGIN || 'http://localhost:3001',
+    origin: process.env.CLIENT_ORIGIN,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 

@@ -1,6 +1,5 @@
 import {HandleRequest} from '../Services/PrepareService';
 import * as ActionTypes from '../ActionsRed';
-import { useSelector } from 'react-redux';
 
 export const AddToCartAction = (url, RequestOptions, add_trigger) => {
   return (dispatch) => {
